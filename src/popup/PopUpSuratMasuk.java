@@ -139,6 +139,7 @@ public class PopUpSuratMasuk extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tf_id = new javax.swing.JTextField();
         pn_Dasar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -161,7 +162,6 @@ public class PopUpSuratMasuk extends javax.swing.JFrame {
         bUpload = new javax.swing.JButton();
         cb_BagianSurat = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        tf_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -285,9 +285,7 @@ public class PopUpSuratMasuk extends javax.swing.JFrame {
                     .addGroup(pn_DasarLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110))))
+                        .addGap(110, 306, Short.MAX_VALUE))))
         );
         pn_DasarLayout.setVerticalGroup(
             pn_DasarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,9 +295,7 @@ public class PopUpSuratMasuk extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
             .addGroup(pn_DasarLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(pn_DasarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel6)
                 .addGap(16, 16, 16)
                 .addGroup(pn_DasarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cb_BagianSurat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
