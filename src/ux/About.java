@@ -13,7 +13,7 @@ public class About extends javax.swing.JPanel {
     public About() {
         initComponents();
         pn_Dasar.putClientProperty(FlatClientProperties.STYLE, "arc:75");
-        
+       // 
         
         
     }
