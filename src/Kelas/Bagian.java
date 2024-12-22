@@ -219,4 +219,6 @@ public class Bagian {
         return jumlah;
     }
 
+    
+    
 }

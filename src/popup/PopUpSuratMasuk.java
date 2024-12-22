@@ -4,14 +4,13 @@
  */
 package popup;
 
+import AutoClose.AutoCloseJFrame;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import javax.swing.UIManager;
-
 import Kelas.Bagian;
 import Kelas.Kategori;
-import main.menuutama;
 import java.awt.Desktop;
 import java.io.File;
 import java.sql.SQLException;
@@ -27,7 +26,6 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import ux.suratmasuk1;
 import ux.suratsurat;
 
 public class PopUpSuratMasuk extends javax.swing.JFrame {
@@ -38,6 +36,8 @@ public class PopUpSuratMasuk extends javax.swing.JFrame {
     public PopUpSuratMasuk() {
         initComponents();
 
+        
+         AutoCloseJFrame.autoCloseIfIdle(this, 3000);
         tf_asal.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Masukan asal surat");
         tf_Perihal.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Berikan Perihal ");
         txtfilepath.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Upload File");
