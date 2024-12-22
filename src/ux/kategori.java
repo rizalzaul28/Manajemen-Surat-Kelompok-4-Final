@@ -62,9 +62,9 @@ public class kategori extends javax.swing.JPanel implements Kategori.PerubahanDa
 
             while (data.next()) {
                 model.addRow(new Object[]{
-                    data.getString("id_ktgr"),
-                    data.getString("kode"),
-                    data.getString("nama"),});
+                    data.getString("id_kategori"),
+                    data.getString("kode_kategori"),
+                    data.getString("nama_kategori"),});
             }
 
             data.close();

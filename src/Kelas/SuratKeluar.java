@@ -282,7 +282,7 @@ public class SuratKeluar {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                String lastNoSurat = rs.getString("no_srt");
+                String lastNoSurat = rs.getString("no_surat");
                 String[] parts = lastNoSurat.split("/");
                 String nomorUrut = parts[0].split("\\.")[1];
                 int lastNo = Integer.parseInt(nomorUrut);

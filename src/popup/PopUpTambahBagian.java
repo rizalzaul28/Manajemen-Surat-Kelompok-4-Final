@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static popup.PopUpTambahKategori.lb_Id;
 import ux.bagian;
 
 public class PopUpTambahBagian extends javax.swing.JDialog {
@@ -56,7 +57,7 @@ public class PopUpTambahBagian extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         lb_Id = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
 
@@ -359,7 +360,7 @@ public class PopUpTambahBagian extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JLabel lb_Id;
+    public static javax.swing.JLabel lb_Id;
     private javax.swing.JPanel pn_Dasar;
     public static javax.swing.JTextField tf_Kode;
     public static javax.swing.JTextField tf_Nama;
@@ -367,6 +368,6 @@ public class PopUpTambahBagian extends javax.swing.JDialog {
 private void autoId() throws SQLException {
         Bagian auto = new Bagian();
         int newID = auto.autoIdBagian();
-
+        lb_Id.setText(String.valueOf(newID));
     }
 }

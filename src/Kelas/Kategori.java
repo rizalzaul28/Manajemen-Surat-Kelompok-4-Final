@@ -214,4 +214,18 @@ public class Kategori {
         return newID;
     }
 
+    public ResultSet KonversiKateori() {
+        query = "SELECT nama_kategori FROM kategori WHERE kode_kategori = ?";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, kode_kategori);
+
+            rs = ps.executeQuery();
+
+        } catch (SQLException SQLException) {
+            System.out.println("data tidak masuk");
+        }
+        return rs;
+    }
+    
 }

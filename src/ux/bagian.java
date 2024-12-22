@@ -2,18 +2,15 @@ package ux;
 
 import Kelas.Bagian;
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.FlatLightLaf;
-import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import popup.PopUpTambahBagian;
-import static popup.PopUpTambahKategori.lb_Id;
-import static popup.PopUpTambahKategori.tf_Kode;
-import static popup.PopUpTambahKategori.tf_Nama;
+import static popup.PopUpTambahBagian.lb_Id;
+import static popup.PopUpTambahBagian.tf_Kode;
+import static popup.PopUpTambahBagian.tf_Nama;
 
 public class bagian extends javax.swing.JPanel implements Bagian.PerubahanData {
 

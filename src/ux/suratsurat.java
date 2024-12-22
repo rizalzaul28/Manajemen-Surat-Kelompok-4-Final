@@ -1,9 +1,9 @@
 package ux;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.FlatLightLaf;
-import java.awt.Color;
-import javax.swing.UIManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -121,10 +121,14 @@ public class suratsurat extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-       pn_suratsurat.removeAll();
-       pn_suratsurat.add(new suratkeluar());
-       pn_suratsurat.repaint();
-       pn_suratsurat.revalidate();
+        try {
+            pn_suratsurat.removeAll();
+            pn_suratsurat.add(new suratkeluar());
+            pn_suratsurat.repaint();
+            pn_suratsurat.revalidate();
+        } catch (SQLException ex) {
+            Logger.getLogger(suratsurat.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

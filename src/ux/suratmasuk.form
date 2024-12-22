@@ -187,6 +187,9 @@
           </SubComponents>
         </Container>
         <Component class="com.toedter.calendar.JDateChooser" name="TglAwal">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="dd MMMM yyyy"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -264,6 +267,9 @@
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="TglAkhir">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="dd MMMM yyyy"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="bReset">
           <Properties>

@@ -1,18 +1,17 @@
-
 package main;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import ux.About;
 import ux.bagian;
 import ux.dashboard;
 import ux.kategori;
-import ux.suratkeluar;
-import ux.suratmasuk;
 import ux.suratsurat;
 
 /**
@@ -27,8 +26,7 @@ public class menuutama extends javax.swing.JFrame {
     public menuutama() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        
+
         pn_Dasar.putClientProperty(FlatClientProperties.STYLE, "arc:75");
     }
 
@@ -255,57 +253,69 @@ public class menuutama extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-       pn_Dasar.removeAll();
-       pn_Dasar.add(new dashboard());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
-       
+        pn_Dasar.removeAll();
+        pn_Dasar.add(new dashboard());
+        pn_Dasar.repaint();
+        pn_Dasar.revalidate();
+
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-       pn_Dasar.removeAll();
-       pn_Dasar.add(new suratsurat());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        pn_Dasar.removeAll();
+        pn_Dasar.add(new suratsurat());
+        pn_Dasar.repaint();
+        pn_Dasar.revalidate();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-       pn_Dasar.removeAll();
-       pn_Dasar.add(new bagian());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        try {
+            pn_Dasar.removeAll();
+            pn_Dasar.add(new bagian());
+            pn_Dasar.repaint();
+            pn_Dasar.revalidate();
+        } catch (SQLException ex) {
+            Logger.getLogger(menuutama.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       pn_Dasar.removeAll();
-       pn_Dasar.add(new dashboard());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        pn_Dasar.removeAll();
+        pn_Dasar.add(new dashboard());
+        pn_Dasar.repaint();
+        pn_Dasar.revalidate();
     }//GEN-LAST:event_formWindowOpened
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-       pn_Dasar.removeAll();
-       pn_Dasar.add(new kategori());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        try {
+            pn_Dasar.removeAll();
+            pn_Dasar.add(new kategori());
+            pn_Dasar.repaint();
+            pn_Dasar.revalidate();
+        } catch (SQLException ex) {
+            Logger.getLogger(menuutama.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-       pn_Dasar.removeAll();
-       pn_Dasar.add(new dashboard());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        pn_Dasar.removeAll();
+        pn_Dasar.add(new dashboard());
+        pn_Dasar.repaint();
+        pn_Dasar.revalidate();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel3AncestorAdded
-        
+
     }//GEN-LAST:event_jLabel3AncestorAdded
 
     private void jLabel9AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel9AncestorAdded
-        pn_Dasar.removeAll();
-       pn_Dasar.add(new bagian());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        try {
+            pn_Dasar.removeAll();
+            pn_Dasar.add(new bagian());
+            pn_Dasar.repaint();
+            pn_Dasar.revalidate();
+        } catch (SQLException ex) {
+            Logger.getLogger(menuutama.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel9AncestorAdded
 
     private void jLabel7AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel7AncestorAdded
@@ -313,38 +323,46 @@ public class menuutama extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7AncestorAdded
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-       pn_Dasar.removeAll();
-       pn_Dasar.add(new suratsurat());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        pn_Dasar.removeAll();
+        pn_Dasar.add(new suratsurat());
+        pn_Dasar.repaint();
+        pn_Dasar.revalidate();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        pn_Dasar.removeAll();
-       pn_Dasar.add(new bagian());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        try {
+            pn_Dasar.removeAll();
+            pn_Dasar.add(new bagian());
+            pn_Dasar.repaint();
+            pn_Dasar.revalidate();
+        } catch (SQLException ex) {
+            Logger.getLogger(menuutama.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        pn_Dasar.removeAll();
-       pn_Dasar.add(new kategori());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        try {
+            pn_Dasar.removeAll();
+            pn_Dasar.add(new kategori());
+            pn_Dasar.repaint();
+            pn_Dasar.revalidate();
+        } catch (SQLException ex) {
+            Logger.getLogger(menuutama.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         pn_Dasar.removeAll();
-       pn_Dasar.add(new About());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        pn_Dasar.add(new About());
+        pn_Dasar.repaint();
+        pn_Dasar.revalidate();
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         pn_Dasar.removeAll();
-       pn_Dasar.add(new About());
-       pn_Dasar.repaint();
-       pn_Dasar.revalidate();
+        pn_Dasar.add(new About());
+        pn_Dasar.repaint();
+        pn_Dasar.revalidate();
     }//GEN-LAST:event_jLabel12MouseClicked
 
     /**
@@ -352,21 +370,20 @@ public class menuutama extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         FlatLightLaf.setup();
-        
-        UIManager.put( "Button.arc", 20 );
-        UIManager.put( "Component.arc", 20 );
-        UIManager.put( "CheckBox.arc", 20 );
-        UIManager.put( "Button.background", Color.WHITE);
-        UIManager.put( "Button.hoverBackground", new Color(234,242,248));
-        
-        
-        UIManager.put("TableHeader.background", new Color(0,102,102));
+
+        UIManager.put("Button.arc", 20);
+        UIManager.put("Component.arc", 20);
+        UIManager.put("CheckBox.arc", 20);
+        UIManager.put("Button.background", Color.WHITE);
+        UIManager.put("Button.hoverBackground", new Color(234, 242, 248));
+
+        UIManager.put("TableHeader.background", new Color(0, 102, 102));
         UIManager.put("TableHeader.foreground", Color.WHITE);
-        UIManager.put("Table.selectionBackground", new Color(0,153,153));
-        UIManager.put("Table.alternateRowColor", new Color(240,240,240));
-        UIManager.put("Component.focusedBorderColor", new Color(0,153,153));
-        UIManager.put("Component.BorderColor", Color.GREEN );
-        
+        UIManager.put("Table.selectionBackground", new Color(0, 153, 153));
+        UIManager.put("Table.alternateRowColor", new Color(240, 240, 240));
+        UIManager.put("Component.focusedBorderColor", new Color(0, 153, 153));
+        UIManager.put("Component.BorderColor", Color.GREEN);
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new menuutama().setVisible(true);

@@ -16,7 +16,7 @@ public class Koneksi {
 
     private Connection KonekstorSQL;
     private String host = "localhost";
-    private String db = "";
+    private String db = "manajemensurat";
     private String user = "root";
     private String password = "";
     private String port = "3306";

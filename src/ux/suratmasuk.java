@@ -1,5 +1,3 @@
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -8,7 +6,6 @@ package ux;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import popup.PopUpSuratMasuk;
-
 
 import Kelas.Bagian;
 import Kelas.Kategori;
@@ -23,7 +20,6 @@ import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 
-
 public class suratmasuk extends javax.swing.JPanel {
 
     /**
@@ -32,7 +28,7 @@ public class suratmasuk extends javax.swing.JPanel {
     public suratmasuk() {
         initComponents();
         pn_uploadmasuk.putClientProperty(FlatClientProperties.STYLE, "arc:50");
-      
+
         loadTabel();
         blokirtextfieldTanggal();
         cbBagianSurat();
@@ -51,11 +47,10 @@ public class suratmasuk extends javax.swing.JPanel {
                 loadfilterBagianKategoriTanggal();
             }
         });
-        
+
     }
-    
-    
-     public void setModel(DefaultTableModel model) {
+
+    public void setModel(DefaultTableModel model) {
         tb_SuratMasuk.setModel(model);
     }
 
@@ -368,7 +363,6 @@ public class suratmasuk extends javax.swing.JPanel {
         loadTabel();
     }
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -458,6 +452,8 @@ public class suratmasuk extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tb_SuratMasuk);
 
+        TglAwal.setDateFormatString("dd MMMM yyyy");
+
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Filter Pencarian");
@@ -477,6 +473,8 @@ public class suratmasuk extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Tanggal Akhir");
+
+        TglAkhir.setDateFormatString("dd MMMM yyyy");
 
         bReset.setText("RESET");
         bReset.addActionListener(new java.awt.event.ActionListener() {
@@ -544,8 +542,8 @@ public class suratmasuk extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bTambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bTambahMouseClicked
-        
-          PopUpSuratMasuk sk = new PopUpSuratMasuk();
+
+        PopUpSuratMasuk sk = new PopUpSuratMasuk();
         sk.setVisible(true);
         sk.bEdit.setVisible(false);
         sk.bHapus.setVisible(false);
@@ -556,7 +554,7 @@ public class suratmasuk extends javax.swing.JPanel {
     }//GEN-LAST:event_bTambahMouseClicked
 
     private void tb_SuratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_SuratMasukMouseClicked
-       PopUpSuratMasuk suratMasukFrame = new PopUpSuratMasuk();
+        PopUpSuratMasuk suratMasukFrame = new PopUpSuratMasuk();
         suratMasukFrame.setVisible(true);
         suratMasukFrame.bTambah.setVisible(false);
         suratMasukFrame.setLocationRelativeTo(null);
@@ -571,14 +569,21 @@ public class suratmasuk extends javax.swing.JPanel {
             sur.setId_surat(tb_SuratMasuk.getValueAt(baris, 0).toString());
 
             String kode = tb_SuratMasuk.getValueAt(baris, 1).toString();
+
             Bagian.setKode_bagian(kode);
             Bagian bag = new Bagian();
-            ResultSet data = bag.KonversiBagian();
-            if (data.next()) {
-                String namaBagian = data.getString("nama_bagian");
+            ResultSet dataBag = bag.KonversiBagian();
+            if (dataBag.next()) {
+                String namaBagian = dataBag.getString("nama_bagian");
                 SuratMasuk.setBagian(kode + " - " + namaBagian);
             }
             sur.setKategori(tb_SuratMasuk.getValueAt(baris, 2).toString());
+            Kategori kat = new Kategori();
+            ResultSet dataKat = kat.KonversiKateori();
+            if (dataKat.next()) {
+                String namaKategori = dataKat.getString("nama_kategori");
+                SuratMasuk.setKategori(kode + " - " + namaKategori);
+            }
             sur.setAsal_surat(tb_SuratMasuk.getValueAt(baris, 3).toString());
             sur.setPerihal(tb_SuratMasuk.getValueAt(baris, 4).toString());
 
@@ -604,7 +609,7 @@ public class suratmasuk extends javax.swing.JPanel {
     }//GEN-LAST:event_tb_SuratMasukMouseClicked
 
     private void bResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bResetActionPerformed
-      reset();
+        reset();
     }//GEN-LAST:event_bResetActionPerformed
 
 
