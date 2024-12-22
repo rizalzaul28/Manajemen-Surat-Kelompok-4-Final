@@ -4,34 +4,79 @@
  */
 package ux;
 
+import Kelas.Kategori;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 import popup.PopUpTambahKategori;
+import static popup.PopUpTambahKategori.lb_Id;
+import static popup.PopUpTambahKategori.tf_Kode;
+import static popup.PopUpTambahKategori.tf_Nama;
 
 /**
  *
  * @author lenovo
  */
-public class kategori extends javax.swing.JPanel {
+public class kategori extends javax.swing.JPanel implements Kategori.PerubahanData {
+
+    private Kategori ktgr;
 
     /**
      * Creates new form kategori
      */
-    public kategori() {
+    public kategori() throws SQLException {
         initComponents();
+
+        ktgr = new Kategori();
+        ktgr.TambahPerubahanData(this);
+
+        loadTabel();
         pn_uploadkeluar.putClientProperty(FlatClientProperties.STYLE, "arc:50");
-        
+
         FlatLightLaf.setup();
-        
-        UIManager.put( "Button.arc", 15 );
-        UIManager.put( "Component.arc", 20 );
-        UIManager.put( "CheckBox.arc", 10 );
-        UIManager.put( "Button.background", Color.WHITE);
-        
+
+        UIManager.put("Button.arc", 15);
+        UIManager.put("Component.arc", 20);
+        UIManager.put("CheckBox.arc", 10);
+        UIManager.put("Button.background", Color.WHITE);
+
         pn_Dasar.putClientProperty(FlatClientProperties.STYLE, "arc:75");
-        
+
+    }
+
+    public void loadTabel() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn(null);
+        model.addColumn("Kode Kategori Surat");
+        model.addColumn("Nama Kategori Surat");
+
+        try {
+            Kategori k = new Kategori();
+            ResultSet data = k.KodeTampilTabel();
+
+            while (data.next()) {
+                model.addRow(new Object[]{
+                    data.getString("id_ktgr"),
+                    data.getString("kode"),
+                    data.getString("nama"),});
+            }
+
+            data.close();
+        } catch (SQLException sQLException) {
+        }
+
+        tb_Kategori.setModel(model);
+
+        tb_Kategori.getColumnModel().getColumn(0).setMinWidth(0);
+        tb_Kategori.getColumnModel().getColumn(0).setMaxWidth(0);
+        tb_Kategori.getColumnModel().getColumn(0).setWidth(0);
+
     }
 
     /**
@@ -45,7 +90,7 @@ public class kategori extends javax.swing.JPanel {
 
         pn_Dasar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_Kategori = new javax.swing.JTable();
         pn_uploadkeluar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -56,7 +101,7 @@ public class kategori extends javax.swing.JPanel {
 
         pn_Dasar.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_Kategori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "1", "1", "1"},
                 {"2", "2", "2", "2"},
@@ -67,8 +112,13 @@ public class kategori extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
+        tb_Kategori.setRowHeight(30);
+        tb_Kategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_KategoriMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tb_Kategori);
 
         pn_uploadkeluar.setBackground(new java.awt.Color(234, 242, 248));
 
@@ -139,9 +189,31 @@ public class kategori extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        PopUpTambahKategori pusm = new PopUpTambahKategori();
-        pusm.setVisible(true);
+        try {
+            PopUpTambahKategori pusm = new PopUpTambahKategori(null, true, ktgr);
+            pusm.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(kategori.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void tb_KategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_KategoriMouseClicked
+        try {
+            int baris = tb_Kategori.rowAtPoint(evt.getPoint());
+            String id = tb_Kategori.getModel().getValueAt(baris, 0).toString();
+            String kode = tb_Kategori.getValueAt(baris, 1).toString();
+            String nama = tb_Kategori.getValueAt(baris, 2).toString();
+
+            PopUpTambahKategori popUpKategori = new PopUpTambahKategori(null, true, ktgr);
+
+            lb_Id.setText(id);
+            tf_Kode.setText(kode);
+            tf_Nama.setText(nama);
+            popUpKategori.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(kategori.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tb_KategoriMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -149,8 +221,13 @@ public class kategori extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel pn_Dasar;
     private javax.swing.JPanel pn_uploadkeluar;
+    private javax.swing.JTable tb_Kategori;
     // End of variables declaration//GEN-END:variables
+@Override
+    public void AktifPerubahanData() {
+        loadTabel();
+    }
+
 }
