@@ -1,32 +1,71 @@
 package ux;
 
+import Kelas.Bagian;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
-import popup.PopUpTambahBagian; 
+import javax.swing.table.DefaultTableModel;
+import popup.PopUpTambahBagian;
+import static popup.PopUpTambahKategori.lb_Id;
+import static popup.PopUpTambahKategori.tf_Kode;
+import static popup.PopUpTambahKategori.tf_Nama;
 
+public class bagian extends javax.swing.JPanel implements Bagian.PerubahanData {
 
+    private Bagian bgn;
 
-public class bagian extends javax.swing.JPanel {
-
- 
-    public bagian() {
+    public bagian() throws SQLException {
         initComponents();
         pn_Dasar.putClientProperty(FlatClientProperties.STYLE, "arc:50");
         pn_uploadmasuk.putClientProperty(FlatClientProperties.STYLE, "arc:50");
-        
-        
+
+        bgn = new Bagian();
+        bgn.TambahPerubahanData(this);
+
+        loadTabel();
     }
 
-    
+    public void loadTabel() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn(null);
+        model.addColumn("Kode Bagian Surat");
+        model.addColumn("Nama Bagian Surat");
+
+        try {
+            Bagian k = new Bagian();
+            ResultSet data = k.KodeTampilTabel();
+
+            while (data.next()) {
+                model.addRow(new Object[]{
+                    data.getString("id_bagian"),
+                    data.getString("kode_bagian"),
+                    data.getString("nama_bagian"),});
+            }
+
+            data.close();
+        } catch (SQLException sQLException) {
+        }
+
+        tb_Bagian.setModel(model);
+
+        tb_Bagian.getColumnModel().getColumn(0).setMinWidth(0);
+        tb_Bagian.getColumnModel().getColumn(0).setMaxWidth(0);
+        tb_Bagian.getColumnModel().getColumn(0).setWidth(0);
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pn_Dasar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_Bagian = new javax.swing.JTable();
         pn_uploadmasuk = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -37,7 +76,7 @@ public class bagian extends javax.swing.JPanel {
 
         pn_Dasar.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_Bagian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "1", "1", "1"},
                 {"2", "2", "2", "2"},
@@ -48,8 +87,13 @@ public class bagian extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
+        tb_Bagian.setRowHeight(30);
+        tb_Bagian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_BagianMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tb_Bagian);
 
         pn_uploadmasuk.setBackground(new java.awt.Color(234, 242, 248));
 
@@ -120,9 +164,30 @@ public class bagian extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        PopUpTambahBagian pusm = new PopUpTambahBagian();
-        pusm.setVisible(true);
+        try {
+            PopUpTambahBagian pusm = new PopUpTambahBagian(null, true, bgn);
+            pusm.setVisible(true);
+        } catch (SQLException sQLException) {
+        }
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void tb_BagianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_BagianMouseClicked
+        try {
+            int baris = tb_Bagian.rowAtPoint(evt.getPoint());
+            String id = tb_Bagian.getModel().getValueAt(baris, 0).toString();
+            String kode = tb_Bagian.getValueAt(baris, 1).toString();
+            String nama = tb_Bagian.getValueAt(baris, 2).toString();
+
+            PopUpTambahBagian popUpKategori = new PopUpTambahBagian(null, true, bgn);
+
+            lb_Id.setText(id);
+            tf_Kode.setText(kode);
+            tf_Nama.setText(nama);
+            popUpKategori.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(bagian.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tb_BagianMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -130,8 +195,12 @@ public class bagian extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel pn_Dasar;
     private javax.swing.JPanel pn_uploadmasuk;
+    private javax.swing.JTable tb_Bagian;
     // End of variables declaration//GEN-END:variables
+@Override
+    public void AktifPerubahanData() {
+        loadTabel();
+    }
 }

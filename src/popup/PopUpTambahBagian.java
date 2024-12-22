@@ -4,17 +4,36 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import javax.swing.UIManager;
+import AutoClose.AutoCloseJFrame;
+import Kelas.Bagian;
+import Kelas.TimedJOptionPane;
+import Main.MenuBagian;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import ux.bagian;
 
-public class PopUpTambahBagian extends javax.swing.JFrame {
+public class PopUpTambahBagian extends javax.swing.JDialog {
 
-   
-    public PopUpTambahBagian() {
+    private Bagian b;
+
+    public PopUpTambahBagian(java.awt.Frame parent, boolean b, Bagian bgn) throws SQLException {
+        super(parent, b);
         initComponents();
+        AutoCloseJFrame.autoCloseIfIdle(this, 3000);
+        this.b = bgn;
+        autoId();
+        reset();
         tf_Kode.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Masukan Nomor");
         tf_Nama.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Berikan Perihal ");
-        
+
     }
 
+    void reset() {
+        tf_Kode.setText(null);
+        tf_Nama.setText(null);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -86,6 +105,11 @@ public class PopUpTambahBagian extends javax.swing.JFrame {
         });
 
         jButton3.setText("Hapus");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(255, 102, 0));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -93,8 +117,18 @@ public class PopUpTambahBagian extends javax.swing.JFrame {
         jButton5.setText("- Kosongkan Field -");
 
         jButton1.setText("Tambah");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Ubah");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         lb_Id.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -202,19 +236,112 @@ public class PopUpTambahBagian extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton4MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            if (tf_Kode.getText().isEmpty() || tf_Nama.getText().isEmpty()) {
+                TimedJOptionPane timedPane = new TimedJOptionPane();
+                timedPane.showTimedMessage("Kode dan Nama bagian tidak boleh kosong!", null, JOptionPane.ERROR_MESSAGE, 3000);
+                return;
+            }
+
+            Bagian kodeTambah = new Kelas.Bagian();
+            kodeTambah.setId_bagian(Integer.parseInt(lb_Id.getText()));
+            kodeTambah.setKode_bagian(tf_Kode.getText());
+            kodeTambah.setNama_bagian(tf_Nama.getText());
+
+            kodeTambah.KodeTambah();
+            reset();
+            autoId();
+
+            bagian menuBagian = new bagian();
+            menuBagian.loadTabel();
+
+            b.NotifPerubahanData();
+            dispose();
+
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + sQLException.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            if (tf_Kode.getText().isEmpty() || tf_Nama.getText().isEmpty()) {
+                TimedJOptionPane timedPane = new TimedJOptionPane();
+                timedPane.showTimedMessage("Kode dan Nama bagian tidak boleh kosong!", null, JOptionPane.ERROR_MESSAGE, 3000);
+                return;
+            }
+
+            Bagian kodeUbah = new Bagian();
+            kodeUbah.setId_bagian(Integer.parseInt(lb_Id.getText()));
+            kodeUbah.setKode_bagian(tf_Kode.getText());
+            kodeUbah.setNama_bagian(tf_Nama.getText());
+            kodeUbah.KodeUbah();
+            reset();
+            autoId();
+
+            bagian menuBagian = new bagian();
+            menuBagian.loadTabel();
+
+            b.NotifPerubahanData();
+            dispose();
+
+        } catch (SQLException sQLException) {
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+
+            if (lb_Id.getText().isEmpty()) {
+                TimedJOptionPane timedPane = new TimedJOptionPane();
+                timedPane.showTimedMessage("Pilih data yang ingin dihapus!", null, JOptionPane.WARNING_MESSAGE, 1000);
+                return;
+            }
+
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "Yakin ingin menghapus data ini?",
+                    "Konfirmasi",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+
+                Bagian kodeHapus = new Bagian();
+                kodeHapus.setId_bagian(Integer.parseInt(lb_Id.getText()));
+                kodeHapus.KodeHapus();
+                autoId();
+                reset();
+
+                bagian menuBagian = new bagian();
+                menuBagian.loadTabel();
+
+                b.NotifPerubahanData();
+                dispose();
+
+            }
+        } catch (SQLException sQLException) {
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       FlatLightLaf.setup();
-        
-        UIManager.put( "Button.arc", 15 );
-        UIManager.put( "Component.arc", 20 );
-        UIManager.put( "CheckBox.arc", 10 );
-        UIManager.put( "Button.background", Color.WHITE);
+        FlatLightLaf.setup();
+
+        UIManager.put("Button.arc", 15);
+        UIManager.put("Component.arc", 20);
+        UIManager.put("CheckBox.arc", 10);
+        UIManager.put("Button.background", Color.WHITE);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PopUpTambahBagian().setVisible(true);
+                try {
+                    Bagian bgn = new Bagian();
+                    new PopUpTambahBagian(null, true, bgn).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PopUpTambahBagian.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -238,4 +365,9 @@ public class PopUpTambahBagian extends javax.swing.JFrame {
     public static javax.swing.JTextField tf_Kode;
     public static javax.swing.JTextField tf_Nama;
     // End of variables declaration//GEN-END:variables
+private void autoId() throws SQLException {
+        Bagian auto = new Bagian();
+        int newID = auto.autoIdBagian();
+
+    }
 }
