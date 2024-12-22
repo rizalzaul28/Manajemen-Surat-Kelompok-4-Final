@@ -137,6 +137,6 @@ public class suratsurat extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel pn_Dasar;
-    private javax.swing.JPanel pn_suratsurat;
+    public static javax.swing.JPanel pn_suratsurat;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,7 +17,7 @@ import java.io.File;
 import java.sql.SQLException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import Kelas.SuratMasuk;
+import kelas.SuratMasuk;
 import ux.suratmasuk;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.io.IOException;

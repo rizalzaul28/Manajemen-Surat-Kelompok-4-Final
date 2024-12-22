@@ -13,7 +13,7 @@ import Kelas.Kategori;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-import Kelas.SuratMasuk;
+import kelas.SuratMasuk;
 import popup.PopUpSuratMasuk;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.text.SimpleDateFormat;
