@@ -234,7 +234,7 @@ public class SuratKeluar {
     }
 
     // Method untuk menampilkan jumlah Surat Keluar
-    public int TampilJumlahBagian() {
+    public int TampilJumlahSuratKeluar() {
         query = "SELECT COUNT(*) AS jumlah FROM surat_keluar";
 
         try {

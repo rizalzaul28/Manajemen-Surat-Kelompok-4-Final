@@ -1,8 +1,14 @@
 package ux;
 
+import Kelas.Bagian;
+import Kelas.Kategori;
+import Kelas.SuratKeluar;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 
@@ -13,11 +19,57 @@ public class dashboard extends javax.swing.JPanel {
     public dashboard() {
         initComponents();
         pn_Dasar.putClientProperty(FlatClientProperties.STYLE, "arc:75");
-        
-        
+        tampilJumlahKategoriSurat();
+        tampilJumlahSuratKeluar();
     }
 
+    void tampilJumlahKategoriSurat() {
+        try {
+            Kategori jumKategori = new Kategori();
+            int jumlahKode = jumKategori.TampilJumlahKategori();
+
+            lb_Kategori.setText(String.valueOf(jumlahKode));
+        } catch (SQLException ex) {
+            Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            lb_Kategori.setText("Error");
+        }
+    }
     
+    void tampilJumlahBagianSurat() {
+        try {
+            Bagian jumKategori = new Bagian();
+            int jumlahKode = jumKategori.TampilJumlahBagian();
+
+            lb_Kategori.setText(String.valueOf(jumlahKode));
+        } catch (SQLException ex) {
+            Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            lb_Kategori.setText("Error");
+        }
+    }
+    
+    void tampilJumlahSuratMasuk() {
+        try {
+            Kategori jumKategori = new Kategori();
+            int jumlahKode = jumKategori.TampilJumlahKategori();
+
+            lb_Kategori.setText(String.valueOf(jumlahKode));
+        } catch (SQLException ex) {
+            Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            lb_Kategori.setText("Error");
+        }
+    }
+    
+    void tampilJumlahSuratKeluar() {
+        try {
+            SuratKeluar jumKategori = new SuratKeluar();
+            int jumlahKode = jumKategori.TampilJumlahSuratKeluar();
+
+            lb_SuratKeluar.setText(String.valueOf(jumlahKode));
+        } catch (SQLException ex) {
+            Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            lb_SuratKeluar.setText("Error");
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,12 +92,12 @@ public class dashboard extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        lb_SuratKeluar = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
+        lb_SuratMasuk = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -148,7 +200,7 @@ public class dashboard extends javax.swing.JPanel {
 
         lb_.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         lb_.setForeground(new java.awt.Color(153, 153, 153));
-        lb_.setText("Jumlah Bagian");
+        lb_.setText("Jumlah Kategori");
 
         jPanel6.setBackground(new java.awt.Color(51, 130, 255));
 
@@ -172,25 +224,25 @@ public class dashboard extends javax.swing.JPanel {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel10.setText("Jumlah Bagian");
+        jLabel10.setText("Jumlah Surat Masuk");
 
         jPanel4.setBackground(new java.awt.Color(234, 242, 248));
         jPanel4.setPreferredSize(new java.awt.Dimension(230, 120));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(51, 130, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("999");
+        lb_SuratKeluar.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lb_SuratKeluar.setForeground(new java.awt.Color(51, 130, 255));
+        lb_SuratKeluar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_SuratKeluar.setText("999");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+            .addComponent(lb_SuratKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lb_SuratKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel7.setBackground(new java.awt.Color(51, 130, 255));
@@ -215,25 +267,25 @@ public class dashboard extends javax.swing.JPanel {
 
         jLabel17.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel17.setText("Jumlah Bagian");
+        jLabel17.setText("Jumlah Surat Keluar");
 
         jPanel10.setBackground(new java.awt.Color(51, 130, 255));
         jPanel10.setPreferredSize(new java.awt.Dimension(230, 120));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("999");
+        lb_SuratMasuk.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lb_SuratMasuk.setForeground(new java.awt.Color(255, 255, 255));
+        lb_SuratMasuk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_SuratMasuk.setText("999");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+            .addComponent(lb_SuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lb_SuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel11.setBackground(new java.awt.Color(234, 242, 248));
@@ -358,13 +410,11 @@ public class dashboard extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -383,6 +433,8 @@ public class dashboard extends javax.swing.JPanel {
     private javax.swing.JLabel lb_;
     private javax.swing.JLabel lb_Bagian;
     private javax.swing.JLabel lb_Kategori;
+    private javax.swing.JLabel lb_SuratKeluar;
+    private javax.swing.JLabel lb_SuratMasuk;
     private javax.swing.JPanel pn_Dasar;
     // End of variables declaration//GEN-END:variables
 }

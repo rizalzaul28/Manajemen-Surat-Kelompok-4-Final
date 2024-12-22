@@ -307,7 +307,7 @@ public class SuratMasuk {
 
     }
 
-    public int TampilJumlahBagian() {
+    public int TampilJumlahSuratMasuk() {
         query = "SELECT COUNT(*) AS jumlah FROM surat_masuk";
 
         try {
@@ -327,4 +327,5 @@ public class SuratMasuk {
 
         return jumlah;
     }
+    
 }
