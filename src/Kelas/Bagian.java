@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class Bagian {
 
     int id_bagian, jumlah = 0;
-    String kode_bagian, nama_bagian;
+   private static String kode_bagian, nama_bagian;
 
     private Connection conn;
     private PreparedStatement ps;
@@ -62,21 +62,26 @@ public class Bagian {
         this.id_bagian = id_bagian;
     }
 
-    public String getKode_bagian() {
+    public static String getKode_bagian() {
         return kode_bagian;
     }
 
-    public void setKode_bagian(String kode_bagian) {
-        this.kode_bagian = kode_bagian;
+    public static void setKode_bagian(String kode_bagian) {
+        Bagian.kode_bagian = kode_bagian;
     }
 
-    public String getNama_bagian() {
+    public static String getNama_bagian() {
         return nama_bagian;
     }
 
-    public void setNama_bagian(String nama_bagian) {
-        this.nama_bagian = nama_bagian;
+    public static void setNama_bagian(String nama_bagian) {
+        Bagian.nama_bagian = nama_bagian;
     }
+
+
+
+ 
+    
 
     // Method untuk menambah data (KodeTambah)
     public void KodeTambah() {
@@ -219,6 +224,17 @@ public class Bagian {
         return jumlah;
     }
 
-    
-    
+    public ResultSet KonversiBagian() {
+        query = "SELECT nama_bagian FROM bagian WHERE kode_bagian = ?";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, kode_bagian);
+
+            rs = ps.executeQuery();
+
+        } catch (SQLException SQLException) {
+            System.out.println("data tidak masuk");
+        }
+        return rs;
+    }
 }

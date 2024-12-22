@@ -2,6 +2,7 @@ package popup;
 
 import AutoClose.AutoCloseJFrame;
 import Kelas.Kategori;
+import Kelas.TimedJOptionPane;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;

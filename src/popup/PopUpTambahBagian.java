@@ -7,7 +7,6 @@ import javax.swing.UIManager;
 import AutoClose.AutoCloseJFrame;
 import Kelas.Bagian;
 import Kelas.TimedJOptionPane;
-import Main.MenuBagian;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

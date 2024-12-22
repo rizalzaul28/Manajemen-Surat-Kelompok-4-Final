@@ -571,7 +571,7 @@ public class suratmasuk extends javax.swing.JPanel {
             sur.setId_surat(tb_SuratMasuk.getValueAt(baris, 0).toString());
 
             String kode = tb_SuratMasuk.getValueAt(baris, 1).toString();
-            Bagian.setKode(kode);
+            Bagian.setKode_bagian(kode);
             Bagian bag = new Bagian();
             ResultSet data = bag.KonversiBagian();
             if (data.next()) {
